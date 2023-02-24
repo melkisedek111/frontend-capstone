@@ -10,7 +10,22 @@ export const LineGraphContainer = styled.div`
 	background-color: #fff;
 	overflow-X: auto;
 	/* width: 540px; */
-	width: 100%;
+
+	/* @media ${CSS_CONSTANTS.DEVICES.mobileM} {
+		width: 330px;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.tablet} {
+		width: 725px;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.laptopM} {
+		width: 100%;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.desktopM} {
+		width: 100%;
+	} */
 `;
 
 export const GraphDetails = styled.div`

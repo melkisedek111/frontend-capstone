@@ -3,16 +3,32 @@ import CSS_CONSTANTS from "../../utils/css.constants";
 
 export const AppBarSection = styled.section`
 	display: grid;
-	grid-template-columns: ${(props) =>
-		props.isOpenSidebar ? "1fr" : "0.17fr 1fr"};
+
 	.show {
 		/* position: absolute;
 		left: 0;
 		top: 0;
 		background-color: #fff;
 		height: 100%; */
-		display: none;
+		display: block;
 		z-index: 100;
+	}
+	@media ${CSS_CONSTANTS.DEVICES.mobileM} {
+		grid-template-columns: ${(props) =>
+			props.isOpenSidebar ? "0.17fr 1fr" : "1fr" };
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.tablet} {
+		grid-template-columns: ${(props) =>
+			props.isOpenSidebar ? "0.17fr 1fr" : "1fr" };
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.laptopM} {
+		grid-template-columns: 0.17fr 1fr;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.desktopM} {
+		grid-template-columns: 0.17fr 1fr;
 	}
 `;
 
@@ -27,19 +43,19 @@ export const TitleContainer = styled.div`
 		background-color: #f0f0f0;
 		border-radius: 5px;
 
-		@media only screen and (${CSS_CONSTANTS.DEVICES.mobileM}) {
+		@media ${CSS_CONSTANTS.DEVICES.mobileM} {
 			display: block;
 		}
 
-		@media only screen and (${CSS_CONSTANTS.DEVICES.tablet}) {
+		@media ${CSS_CONSTANTS.DEVICES.tablet} {
 			display: block;
 		}
 
-		@media only screen and (${CSS_CONSTANTS.DEVICES.laptopM}) {
+		@media ${CSS_CONSTANTS.DEVICES.laptopM} {
 			display: none;
 		}
 
-		@media only screen and (${CSS_CONSTANTS.DEVICES.desktopM}) {
+		@media ${CSS_CONSTANTS.DEVICES.desktopM} {
 			display: none;
 		}
 	}
@@ -56,24 +72,39 @@ export const LeftBarMainContainer = styled.div`
 		}
 	}
 	animation: slideIn 0.5s ease-in-out forwards;
+	@media ${CSS_CONSTANTS.DEVICES.mobileM} {
+		display: none;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.tablet} {
+		display: none;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.laptopM} {
+		display: block;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.desktopM} {
+		display: block;
+	}
 `;
 
 export const LeftBarContainer = styled.div`
 	padding: 10px 20px;
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.mobileM}) {
+	@media ${CSS_CONSTANTS.DEVICES.mobileM} {
 		display: block;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.tablet}) {
+	@media ${CSS_CONSTANTS.DEVICES.tablet} {
 		display: block;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.laptopM}) {
+	@media ${CSS_CONSTANTS.DEVICES.laptopM} {
 		display: block;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.desktopM}) {
+	@media ${CSS_CONSTANTS.DEVICES.desktopM} {
 		display: block;
 	}
 `;
@@ -88,22 +119,22 @@ export const PageComponentContainer = styled.div`
 	height: 90vh;
 	overflow-y: auto;
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.mobileM}) {
+	@media ${CSS_CONSTANTS.DEVICES.mobileM} {
 		overflow-y: none;
 		height: 100%;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.tablet}) {
+	@media ${CSS_CONSTANTS.DEVICES.tablet} {
 		height: 90vh;
 		overflow-y: auto;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.laptopM}) {
+	@media ${CSS_CONSTANTS.DEVICES.laptopM} {
 		height: 90vh;
 		overflow-y: auto;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.desktopM}) {
+	@media ${CSS_CONSTANTS.DEVICES.desktopM} {
 		height: 90vh;
 		overflow-y: auto;
 	}
@@ -119,6 +150,22 @@ export const TopBarContainer = styled.div`
 	gap: 20px;
 	h5 {
 		font-size: 23px;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.mobileM} {
+		padding: 0 20px 0 0;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.tablet} {
+		padding: 0 50px 0 0;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.laptopM} {
+		padding: 0 20px 0 0;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.desktopM} {
+		padding: 0 20px 0 0;
 	}
 `;
 
@@ -182,19 +229,19 @@ export const NavigationListContainer = styled.div`
 	gap: 10px;
 	align-items: center;
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.mobileM}) {
+	@media ${CSS_CONSTANTS.DEVICES.mobileM} {
 		display: none;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.tablet}) {
+	@media ${CSS_CONSTANTS.DEVICES.tablet} {
 		display: flex;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.laptopM}) {
+	@media ${CSS_CONSTANTS.DEVICES.laptopM} {
 		display: flex;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.desktopM}) {
+	@media ${CSS_CONSTANTS.DEVICES.desktopM} {
 		display: flex;
 	}
 `;

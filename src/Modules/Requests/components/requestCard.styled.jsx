@@ -7,6 +7,7 @@ export const RequestCardContainer = styled.div`
 	background-color: #fff;
 	border-radius: 5px;
 	.sub_container {
+
         padding: 15px;
     }
 
@@ -85,4 +86,20 @@ export const RequestCardContainer = styled.div`
         justify-content: space-around;
         padding: 15px;
     }
+
+    @media ${CSS_CONSTANTS.DEVICES.mobileM} {
+		margin: 10px;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.tablet} {
+		margin: 10px;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.laptopM} {
+		margin: 10px;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.desktopM} {
+		margin: 0;
+	}
 `;

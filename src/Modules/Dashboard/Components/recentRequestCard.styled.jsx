@@ -22,10 +22,10 @@ export const RecentRequestCardHeader = styled.div`
 
 
 export const RecentRequestLists = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     overflow-y: scroll;
     padding-right: 5px;
-    max-height: 410px;
+    height: 610px;
 `;

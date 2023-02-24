@@ -4,7 +4,7 @@ import CSS_CONSTANTS from "../../../utils/css.constants";
 export const CustomCardSection = styled.section``;
 export const CustomCardContainer = styled.div`
 	background-color: #fff;
-    min-width: 270px;
+    /* min-width: 270px; */
     
     border-radius: 10px;
     border: 1px solid #f0f0f0;
@@ -13,21 +13,21 @@ export const CustomCardContainer = styled.div`
     position: relative;
     height: 210px;
 
-    @media only screen and (${CSS_CONSTANTS.DEVICES.mobileM}) {
+    /* @media ${CSS_CONSTANTS.DEVICES.mobileM} {
 		width: max-content;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.tablet}) {
+	@media ${CSS_CONSTANTS.DEVICES.tablet} {
 		 min-width: 250px;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.laptopM}) {
+	@media ${CSS_CONSTANTS.DEVICES.laptopM} {
 		 min-width: 270px;
 	}
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.desktopM}) {
+	@media ${CSS_CONSTANTS.DEVICES.desktopM} {
 		 min-width: 270px;
-	}
+	} */
 `;
 export const BackgroundCardIcon = styled.div`
     opacity: 0.05;

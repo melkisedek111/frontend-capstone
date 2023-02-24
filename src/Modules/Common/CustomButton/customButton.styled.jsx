@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import CSS_CONSTANTS from "../../../utils/css.constants";
 
 export const CustomButtonContainer = styled.button`
@@ -12,9 +12,14 @@ export const CustomButtonContainer = styled.button`
 	border-radius: 5px;
 	cursor: pointer;
 	font-size: 15px;
-
-	transition: background-color 0.2s;
+	${props => props?.fullWidth ? css`width: 100%;` : ""}
+	${props => props?.fullHeight ? css`height: 100%;` : css`height: 56px;`}  
 	
+	> svg {
+		margin-right: 10px;
+	}
+	transition: background-color 0.2s;
+
 	:hover {
 		filter: contrast(85%);
 	}

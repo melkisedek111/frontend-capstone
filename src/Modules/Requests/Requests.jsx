@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import CustomButton from "../Common/CustomButton/CustomButton.jsx";
+import React, { useEffect, useState } from "react";
 import {
 	RequestCards,
 	RequestsContainer,
@@ -10,12 +8,17 @@ import {
 } from "./requests.styled.jsx";
 import CustomTextField from "../Common/CustomTextField/CustomTextField.jsx";
 import SearchIcon from "@mui/icons-material/Search";
-import TextField from "@mui/material/TextField";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import { Button, ButtonGroup, InputAdornment } from "@mui/material";
 import CustomDropdown from "../Common/CustomDropdown/CustomDropdown.jsx";
 import RequestCard from "./components/requestCard.jsx";
+import CustomPagination from "../Common/CustomPagination/CustomPagination.jsx";
+import { useDispatch } from "react-redux";
+import { setCurrentPage } from "../../redux/slices/appBar.slice.js";
+
+import AddRequestFormModal from "./components/AddRequestFormModal.jsx";
+
 const Requests = () => {
+	const dispatch = useDispatch();
+
 	const [viewTypes, setViewTypes] = useState([
 		{
 			label: "Pending",
@@ -53,11 +56,18 @@ const Requests = () => {
 		setViewTypes(allViewTypes);
 	};
 
+
+			
+	useEffect(() => {
+		dispatch(setCurrentPage({pageTitle: "Requests"}));
+		
+    }, []);
+
 	return (
 		<RequestsSection>
 			<RequestsContainer>
 				<RequestsHeader>
-					<CustomButton icon={<AddCircleIcon />} label="Add New Request" />
+					<AddRequestFormModal />
 					<RequestSubHeader>
 						<CustomTextField icon={<SearchIcon />} placeholder="Search" />
 						<CustomDropdown
@@ -73,6 +83,7 @@ const Requests = () => {
 					<RequestCard />
 					<RequestCard />
 				</RequestCards>
+				<CustomPagination />
 			</RequestsContainer>
 		</RequestsSection>
 	);

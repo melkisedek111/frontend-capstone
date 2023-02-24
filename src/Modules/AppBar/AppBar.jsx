@@ -29,7 +29,7 @@ import MailRoundedIcon from "@mui/icons-material/MailRounded";
 import Dashboard from "../Dashboard/Dashboard.jsx";
 import GroupAddTwoToneIcon from "@mui/icons-material/GroupAddTwoTone";
 
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -37,7 +37,106 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { Avatar } from "@mui/material";
 import NotificationIconResponsive from "./Components/NotificationIconResponsive.jsx";
 import { intSizes } from "../../utils/css.constants.js";
+import { useSelector } from "react-redux";
+import BusinessIcon from '@mui/icons-material/Business';
+
+const Links = [
+	{
+		path: "/",
+		component: (
+			<>
+				<DashboardTwoToneIcon />
+				<h5> Dashboard </h5>
+			</>
+		),
+		title: "Dashboard",
+		isActive: false
+	},
+	{
+		path: "/requests",
+		component: (
+			<>
+				<DisplaySettingsTwoToneIcon />
+				<h5> Requests </h5>
+			</>
+		),
+		title: "Requests",
+		isActive: false
+	},
+	{
+		path: "/services",
+		component: (
+			<>
+				<HomeRepairServiceTwoToneIcon />
+				<h5> Services </h5>
+			</>
+		),
+		title: "Services",
+		isActive: false
+	},
+	{
+		path: "/designations",
+		component: (
+			<>
+				<AssignmentIndTwoToneIcon />
+				<h5> Designations </h5>
+			</>
+		),
+		title: "Designations",
+		isActive: false
+	},
+	{
+		path: "/users",
+		component: (
+			<>
+				<PeopleAltTwoToneIcon />
+				<h5> Users </h5>
+			</>
+		),
+		title: "Users",
+		isActive: false
+	},
+	{
+		path: "/items",
+		component: (
+			<>
+				<QrCodeTwoToneIcon />
+				<h5> QR Items </h5>
+			</>
+		),
+		title: "Items",
+		isActive: false
+	},
+	{
+		path: "/qrcode",
+		component: (
+			<>
+				<QrCodeScannerTwoToneIcon />
+				<h5> Scan QR </h5>
+			</>
+		),
+		title: "QRC Code",
+		isActive: false
+	},
+	{
+		path: "/department",
+		component: (
+			<>
+				<BusinessIcon />
+				<h5> Department </h5>
+			</>
+		),
+		title: "Department",
+		isActive: false
+	},
+];
+
 const AppBar = () => {
+	const AppBarState = useSelector((state) => state.appBar);
+	const history = useLocation();
+
+	const [currentPageTitle, setCurrentPageTitle] = useState("Dashboard");
+
 	const [isOpenSidebar, setIsOpenSidebar] = useState(false);
 	const [isWidthLaptopAndMobileSize, setIsWidthLaptopAndMobileSize] =
 		useState(false);
@@ -52,8 +151,14 @@ const AppBar = () => {
 		// document.addEventListener("click", handleCloseNavVisible);
 		const width = window.innerWidth;
 		width <= intSizes.mobileM || width <= intSizes.tablet
-			? setIsWidthLaptopAndMobileSize(true)
-			: setIsWidthLaptopAndMobileSize(false);
+		if(width <= intSizes.mobileM || width <= intSizes.tablet){
+			setIsWidthLaptopAndMobileSize(true);
+			// setIsOpenSidebar(!isOpenSidebar);
+		}
+		else {
+			setIsWidthLaptopAndMobileSize(false);
+		}
+
 		setSelectedWidth(width);
 		return () => {
 			// document.addEventListener("click", handleCloseNavVisible);
@@ -67,7 +172,10 @@ const AppBar = () => {
 	useEffect(() => {
 		if (isOpenMenuBar) {
 			const handleDocumentClick = (event) => {
-				if (!event.target.closest(".menu-bar") && !event.target.closest(".link_responsive_container")) {
+				if (
+					!event.target.closest(".menu-bar") &&
+					!event.target.closest(".link_responsive_container")
+				) {
 					setIsOpenMenuBar(false);
 				}
 			};
@@ -77,55 +185,21 @@ const AppBar = () => {
 			};
 		}
 	}, [isOpenMenuBar]);
-
+	console.log(isOpenSidebar)
 	return (
 		<AppBarSection isOpenSidebar={isOpenSidebar}>
 			<LeftBarMainContainer className={isOpenSidebar ? "show" : ""}>
 				<LeftBarContainer>
 					{/* Logo here */}
 					<LinksContainer>
-						<Link to="/" style={{ textDecoration: "none" }}>
-							<LinkContainer isSelected>
-								<DashboardTwoToneIcon />
-								<h5> Dashboard </h5>
-							</LinkContainer>
-						</Link>
-						<Link to="/requests" style={{ textDecoration: "none" }}>
-							<LinkContainer>
-								<DisplaySettingsTwoToneIcon />
-								<h5> Requests </h5>
-							</LinkContainer>
-						</Link>
-						<Link style={{ textDecoration: "none" }}>
-							<LinkContainer>
-								<HomeRepairServiceTwoToneIcon />
-								<h5> Services </h5>
-							</LinkContainer>
-						</Link>
-						<Link to="/users" style={{ textDecoration: "none" }}>
-							<LinkContainer>
-								<PeopleAltTwoToneIcon />
-								<h5> Users </h5>
-							</LinkContainer>
-						</Link>
-						<Link style={{ textDecoration: "none" }}>
-							<LinkContainer>
-								<AssignmentIndTwoToneIcon />
-								<h5> Designations </h5>
-							</LinkContainer>
-						</Link>
-						<Link style={{ textDecoration: "none" }}>
-							<LinkContainer>
-								<QrCodeTwoToneIcon />
-								<h5> QR Items </h5>
-							</LinkContainer>
-						</Link>
-						<Link style={{ textDecoration: "none" }}>
-							<LinkContainer>
-								<QrCodeScannerTwoToneIcon />
-								<h5> Scan QR </h5>
-							</LinkContainer>
-						</Link>
+						{Links.map((link, index) => (
+							<Link key={index} to={link.path} style={{ textDecoration: "none" }}>
+								<LinkContainer isSelected={link.title.includes(AppBarState.currentPage)}>
+									{link.component}
+
+								</LinkContainer>
+							</Link>
+						))}
 					</LinksContainer>
 				</LeftBarContainer>
 			</LeftBarMainContainer>
@@ -134,7 +208,7 @@ const AppBar = () => {
 					<TopBarContainer>
 						<TitleContainer>
 							<KeyboardArrowRightRoundedIcon onClick={handleOpenSidebar} />
-							<h5>Dashboard</h5>
+							<h5>{AppBarState.currentPage || "Dashboard"}</h5>
 						</TitleContainer>
 						{isWidthLaptopAndMobileSize ? (
 							<>

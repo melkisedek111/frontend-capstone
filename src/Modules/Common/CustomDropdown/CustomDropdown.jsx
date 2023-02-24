@@ -1,20 +1,16 @@
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, Select, TextField } from "@mui/material";
 import React from "react";
 import { CustomDropdownContainer } from "./customDropdown.styled.jsx";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 
 const CustomDropdown = (props) => {
-	const { menuItems, placeholder, isSelected, ...otherProps } = props;
-	console.log(menuItems)
+	const { menuItems, placeholder, isSelected, value, ...otherProps } = props;
 	return (
 		<CustomDropdownContainer>
-			<Select
+			{/* <Select
 				{...otherProps}
 				IconComponent={ArrowDropDownRoundedIcon}
-				value={
-					isSelected ? (menuItems?.length ? menuItems[0].value : null) : placeholder
-				}	
-				// style={{ borderRadius: "10px" }}
+
 			>
 				{isSelected ? null : (
 					<MenuItem disabled value="">
@@ -26,7 +22,19 @@ const CustomDropdown = (props) => {
 							<MenuItem value={item.value}>{item.label}</MenuItem>
 					  ))
 					: null}
-			</Select>
+			</Select> */}
+			<TextField {...otherProps} select value={value || 0}>
+				{placeholder ? (
+					<MenuItem value={0} disabled>
+						{placeholder}
+					</MenuItem>
+				) : null}
+				{menuItems.map((option) => (
+					<MenuItem key={option.value} value={option.value}>
+						{option.label}
+					</MenuItem>
+				))}
+			</TextField>
 		</CustomDropdownContainer>
 	);
 };

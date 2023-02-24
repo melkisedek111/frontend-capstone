@@ -10,7 +10,22 @@ export const RequestsHeader = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	gap: 10px;
+	gap: 20px;
+
+	@media ${CSS_CONSTANTS.DEVICES.mobileM} {
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.tablet} {
+		justify-content: center;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.laptopM} {
+		justify-content: space-between;
+	}
+
+	@media ${CSS_CONSTANTS.DEVICES.desktopM} {
+		justify-content: space-between;
+	}
 `;
 
 export const RequestSubHeader = styled.div`
@@ -19,6 +34,7 @@ export const RequestSubHeader = styled.div`
 	justify-content: space-between;
 	gap: 15px;
 	flex-wrap: wrap;
+	margin: 5px;
 `;
 
 export const RequestCards = styled.div`
@@ -28,7 +44,7 @@ export const RequestCards = styled.div`
 	flex-grow: 1;
 	gap: 50px;
 
-	@media only screen and (${CSS_CONSTANTS.DEVICES.mobileM}) {
+	@media ${CSS_CONSTANTS.DEVICES.mobileM} {
 		justify-content: center;
 	}
 
