@@ -1,18 +1,20 @@
 const path = require("path");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
+	plugins: [new Dotenv()],
 	cache: false,
 	output: {
 		path: path.join(__dirname, "/dist"),
 		filename: "index.bundle.js",
 		clean: true,
-		assetModuleFilename: 'src/assets/[name].[ext]'
+		assetModuleFilename: "src/assets/[name].[ext]",
 	},
 	devServer: {
 		port: 3000,
 		watchFiles: ["src/*.html"],
 		hot: true,
-		historyApiFallback: true
+		historyApiFallback: true,
 	},
 	module: {
 		rules: [
@@ -22,8 +24,8 @@ module.exports = {
 				use: {
 					loader: "babel-loader",
 					options: {
-						presets: ["@babel/preset-env"]
-					}
+						presets: ["@babel/preset-env"],
+					},
 				},
 			},
 			{

@@ -1,7 +1,28 @@
 import React from "react";
 import { InputAdornment, TextField } from "@mui/material";
-import { CustomTextFieldContainer } from "./customTextField.styled.jsx";
+import { styled } from "@mui/material/styles";
 
+import { CustomTextFieldContainer } from "./customTextField.styled.jsx";
+import CSS_CONSTANTS from "../../../utils/css.constants.js";
+const CssTextField = styled(TextField)({
+	"& label.Mui-focused": {
+		color: `${CSS_CONSTANTS.COLORPALLETS.primary}`,
+	},
+	"& .MuiInput-underline:after": {
+		borderBottomColor: `${CSS_CONSTANTS.COLORPALLETS.primary}`,
+	},
+	"& .MuiOutlinedInput-root": {
+		"& fieldset": {
+			borderColor: `${CSS_CONSTANTS.COLORPALLETS.primary}`,
+		},
+		// "&:hover fieldset": {
+		// 	borderColor: "yellow",
+		// },
+		"&.Mui-focused fieldset": {
+			borderColor: `${CSS_CONSTANTS.COLORPALLETS.primary}`,
+		},
+	},
+});
 const CustomTextField = (props) => {
 	const { icon, ...otherProps } = props;
 
@@ -21,7 +42,9 @@ const CustomTextField = (props) => {
 		);
 	}
 
-	return <TextField {...otherProps} />;
+	return <CustomTextFieldContainer>
+		<CssTextField {...otherProps} />
+	</CustomTextFieldContainer>
 };
 
 export default CustomTextField;

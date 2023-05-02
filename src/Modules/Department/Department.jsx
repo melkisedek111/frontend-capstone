@@ -13,6 +13,43 @@ import CustomDropdown from "../Common/CustomDropdown/CustomDropdown.jsx";
 import { handleFieldChange } from "../../helpers/form.helper.jsx";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import AddDepartmentRequestFormModal from "./AddDepartmentRequestFormModal.jsx";
+
+
+const tableCells = {
+	id: (value) => (
+		<TableCell style={{textAlign: "center"}} id={value} scope="row">
+			{value}
+		</TableCell>
+	),
+	name: (value) => (
+		<TableCell style={{textAlign: "center"}} id={value} scope="row" >
+			{value}
+		</TableCell>
+	),
+	initials: (value) => (
+		<TableCell style={{textAlign: "center"}} id={value} scope="row" align="right">
+			{value}
+		</TableCell>
+	),
+	isActive: (value) => (
+		<TableCell style={{textAlign: "center"}} id={value} scope="row" align="right">
+			{value ? "Active" : "Inactive"}
+		</TableCell>
+	),
+	isWithAction: (value) => (
+		<TableCell style={{textAlign: "center"}} id={value} scope="row" align="right">
+			<Box>
+				<IconButton aria-label="delete">
+					<DeleteIcon />
+				</IconButton>
+				<IconButton aria-label="delete">
+					<EditIcon />
+				</IconButton>
+			</Box>
+		</TableCell>
+	),
+};
 
 const Department = () => {
 	const dispatch = useDispatch();
@@ -36,34 +73,28 @@ const Department = () => {
 
 	const headCells = [
 		{
+			id: "id",
+			numeric: false,
+			disablePadding: false,
+			label: "Id",
+		},
+		{
 			id: "name",
 			numeric: false,
 			disablePadding: false,
-			label: "Dessert (100g serving)",
+			label: "Name",
 		},
 		{
-			id: "calories",
-			numeric: true,
+			id: "initials",
+			numeric: false,
 			disablePadding: false,
-			label: "Calories",
+			label: "Initials",
 		},
 		{
-			id: "fat",
-			numeric: true,
+			id: "isActive",
+			numeric: false,
 			disablePadding: false,
-			label: "Fat (g)",
-		},
-		{
-			id: "carbs",
-			numeric: true,
-			disablePadding: false,
-			label: "Carbs (g)",
-		},
-		{
-			id: "protein",
-			numeric: true,
-			disablePadding: false,
-			label: "Protein (g)",
+			label: "Is Active",
 		},
 		{
 			id: "action",
@@ -75,77 +106,34 @@ const Department = () => {
 
 	const rows = [
 		{
-			name: "Cupcake",
-			calories: 305,
-			fat: 3.6,
-			carbs: 76,
-			protein: 43,
-			isWithAction: true,
+			id: 1,
+			name: "Applied Physics and Applied Mathematics Department",
+			initials: "APPMD",
+			isActive: true,
+			isWithAction: true
 		},
 		{
-			name: "Donut",
-			calories: 421,
-			fat: 3.6,
-			carbs: 44,
-			protein: 43,
-			isWithAction: true,
+			id: 2,
+			name: "Art History and Archaeology Department",
+			initials: "AHAD",
+			isActive: true,
+			isWithAction: true
 		},
 		{
-			name: "Eclair",
-			calories: 212,
-			fat: 3.6,
-			carbs: 11,
-			protein: 43,
-			isWithAction: true,
+			id: 3,
+			name: "Astronomy and Astrophysics Department",
+			initials: "AAD",
+			isActive: true,
+			isWithAction: true
 		},
 	];
-
-	const tableCells = {
-		name: (value) => (
-			<TableCell component="th" id={value} scope="row">
-				{value}
-			</TableCell>
-		),
-		calories: (value) => (
-			<TableCell component="th" id={value} scope="row" align="right">
-				{value}
-			</TableCell>
-		),
-		fat: (value) => (
-			<TableCell component="th" id={value} scope="row" align="right">
-				{value}
-			</TableCell>
-		),
-		carbs: (value) => (
-			<TableCell component="th" id={value} scope="row" align="right">
-				{value}
-			</TableCell>
-		),
-		protein: (value) => (
-			<TableCell component="th" id={value} scope="row" align="right">
-				{value}
-			</TableCell>
-		),
-		isWithAction: (value) => (
-			<TableCell component="th" id={value} scope="row" align="right">
-				<Box>
-					<IconButton aria-label="delete">
-						<DeleteIcon />
-					</IconButton>
-					<IconButton aria-label="delete">
-						<EditIcon />
-					</IconButton>
-				</Box>
-			</TableCell>
-		),
-	};
 
 	return (
 		<DepartmentSection>
 			<Grid container spacing={2}>
 				<Grid item xs={12}>
 					<DepartmentFormContainer>
-						<CustomButton label={"Add Department"} isDefault={true} />
+						<AddDepartmentRequestFormModal />
 						<div>
 							<CustomTextField
 								id="outlined-basic"
@@ -175,7 +163,7 @@ const Department = () => {
 								error={errors?.problemType ? true : false}
 								helperText={errors?.problemType || ""}
 							/> */}
-							<CustomButton label={"Add Department"} isDefault={true} />
+							<CustomButton label={"Search"} isDefault={true} />
 						</div>
 					</DepartmentFormContainer>
 				</Grid>

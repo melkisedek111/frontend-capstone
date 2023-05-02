@@ -10,6 +10,7 @@ export const CustomButtonContainer = styled.button`
 	align-items: center;
 	gap: 15px;
 	border-radius: 5px;
+	justify-content: center;
 	cursor: pointer;
 	font-size: 15px;
 	${props => props?.fullWidth ? css`width: 100%;` : ""}

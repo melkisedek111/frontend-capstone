@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import {
 	AppBarSection,
+	IconContainer,
 	LeftBarContainer,
 	LeftBarMainContainer,
 	LinkContainer,
@@ -28,6 +29,7 @@ import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsAct
 import MailRoundedIcon from "@mui/icons-material/MailRounded";
 import Dashboard from "../Dashboard/Dashboard.jsx";
 import GroupAddTwoToneIcon from "@mui/icons-material/GroupAddTwoTone";
+import ApiIcon from "@mui/icons-material/Api";
 
 import { Link, Outlet, useLocation } from "react-router-dom";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
@@ -39,6 +41,7 @@ import NotificationIconResponsive from "./Components/NotificationIconResponsive.
 import { intSizes } from "../../utils/css.constants.js";
 import { useSelector } from "react-redux";
 import BusinessIcon from '@mui/icons-material/Business';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 const Links = [
 	{
@@ -97,7 +100,7 @@ const Links = [
 		isActive: false
 	},
 	{
-		path: "/items",
+		path: "/qr-items",
 		component: (
 			<>
 				<QrCodeTwoToneIcon />
@@ -119,7 +122,7 @@ const Links = [
 		isActive: false
 	},
 	{
-		path: "/department",
+		path: "/departments",
 		component: (
 			<>
 				<BusinessIcon />
@@ -127,6 +130,17 @@ const Links = [
 			</>
 		),
 		title: "Department",
+		isActive: false
+	},
+	{
+		path: "/positions",
+		component: (
+			<>
+				<PersonSearchIcon />
+				<h5> Position </h5>
+			</>
+		),
+		title: "Position",
 		isActive: false
 	},
 ];
@@ -185,12 +199,16 @@ const AppBar = () => {
 			};
 		}
 	}, [isOpenMenuBar]);
-	console.log(isOpenSidebar)
+
 	return (
 		<AppBarSection isOpenSidebar={isOpenSidebar}>
 			<LeftBarMainContainer className={isOpenSidebar ? "show" : ""}>
 				<LeftBarContainer>
 					{/* Logo here */}
+					<IconContainer>
+						<ApiIcon />
+						<h5>Issue Ticket Request Tracker</h5>
+					</IconContainer>
 					<LinksContainer>
 						{Links.map((link, index) => (
 							<Link key={index} to={link.path} style={{ textDecoration: "none" }}>

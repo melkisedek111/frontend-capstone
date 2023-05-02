@@ -2,25 +2,25 @@ import styled from "styled-components";
 import CSS_CONSTANTS from "../../../utils/css.constants";
 
 export const CustomTextFieldContainer = styled.div`
-    .MuiFormLabel-root .Mui-focused {
-        color: ${CSS_CONSTANTS.COLORPALLETS.primary} !important;
-    }
+	.MuiFormLabel-root .Mui-focused {
+		color: ${CSS_CONSTANTS.COLORPALLETS.primary} !important;
+	}
 
-    .MuiFormControl-root {
-        background-color: #fff;
-    }
+	.MuiFormControl-root {
+		background-color: #fff;
+	}
 
-    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+	.css-sn8fib-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused.MuiOutlinedInput-notchedOutline {
+		border-color: red !important;
+	}
+
+	textarea:focus {
 		border-color: ${CSS_CONSTANTS.COLORPALLETS.primary} !important;
 	}
 
-    textarea:focus {
-        border-color: ${CSS_CONSTANTS.COLORPALLETS.primary} !important;
-    }
-
-    .MuiInputBase-input:focus {
-        border-color: ${CSS_CONSTANTS.COLORPALLETS.primary} !important;
-    }
+	.MuiInputBase-input:focus {
+		border-color: ${CSS_CONSTANTS.COLORPALLETS.primary} !important;
+	}
 
 	/* background-color: #fff;
     border: .2px solid #fff;

@@ -11,15 +11,17 @@ import {
 } from "redux-persist";
 import persistReducer from "redux-persist/es/persistReducer";
 import rootReducer from "./rootReducer";
+import { authApi } from "./api/auth.api";
+import { departmentApi } from "./api/department.api";
+import { positionApi } from "./api/position.api";
 
 const logger = createLogger();
 
-const middlewares = [];
+const middlewares = [authApi.middleware, departmentApi.middleware, positionApi.middleware];
 
 if (process.env.NODE_ENV === "development") {
 	middlewares.push(logger);
 }
-
 
 export const store = configureStore({
 	reducer: rootReducer,

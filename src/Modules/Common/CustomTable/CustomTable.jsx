@@ -77,6 +77,7 @@ function EnhancedTableHead(props) {
 						align={headCell.numeric ? "right" : "left"}
 						padding={headCell.disablePadding ? "none" : "normal"}
 						sortDirection={orderBy === headCell.id ? order : false}
+						style={{textAlign: "center"}}
 					>
 						<TableSortLabel
 							active={orderBy === headCell.id}
@@ -198,17 +199,6 @@ export default function CustomTable({tableHeads, tableRows, tableCells}) {
 													return tableCells[key](row[key]);
 												})
 											}
-											{/* <TableCell
-												component="th"
-												id={labelId}
-												scope="row"
-											>
-												{row.name}
-											</TableCell>
-											<TableCell align="right">{row.calories}</TableCell>
-											<TableCell align="right">{row.fat}</TableCell>
-											<TableCell align="right">{row.carbs}</TableCell>
-											<TableCell align="right">{row.protein}</TableCell> */}
 										</TableRow>
 									);
 								})}

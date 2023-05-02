@@ -284,3 +284,21 @@ export const NavigationListContainerResponsive = styled.div`
 		}
 	}
 `;
+
+
+export const IconContainer = styled.div`
+	margin: 10px 0;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	
+
+	h5 {
+		font-size: 20px;
+	}
+	svg {
+		color: ${CSS_CONSTANTS.COLORPALLETS.accent_A};
+		font-size: 40px;
+	}
+`;
